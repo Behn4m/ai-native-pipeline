@@ -1,0 +1,11 @@
+{
+  "name": "done-ai-native",
+  "owner": { "name": "Behnam" },
+  "plugins": [
+    {
+      "name": "pipeline",
+      "source": "./pipeline-plugin",
+      "description": "AI-native development pipeline: one skill per step, artifact templates, design/ write guard."
+    }
+  ]
+}
