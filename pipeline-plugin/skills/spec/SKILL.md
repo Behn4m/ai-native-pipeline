@@ -3,7 +3,7 @@ description: Step 3 of the pipeline. Derive this code repo's domain spec (docs/s
 argument-hint: <domain> <design-branch>
 arguments: [domain, branch]
 disable-model-invocation: true
-allowed-tools: Bash(git -C design *)
+allowed-tools: Bash(git -C design *) Bash(git -C .pipeline/findings *)
 ---
 
 Run in a **code repo**. `design/` is read-only.
@@ -32,4 +32,5 @@ The submodule was fetched and checked out at `$branch` before this skill loaded.
    - Constraints and acceptance criteria: only the CON and AC IDs that apply to this domain.
    - Design diff impact: what the changes above mean for this domain. "None" if nothing.
 4. If the design is missing something this domain needs, contradicts itself, or rests on a wrong assumption, run `/pipeline:finding` and stop.
-5. Report the spec summary and any open points. Do not start the plan.
+5. If `.pipeline/findings/` exists: `git -C .pipeline/findings pull --rebase`, then for every `synced` finding of this project whose Design change now appears in the design (as committed, or as the human edited it), set `status: applied`. Commit and push the archive.
+6. Report the spec summary, findings now applied, and any open points. Do not start the plan.

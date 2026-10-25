@@ -16,17 +16,32 @@ Recipes for running work through the pipeline. Setup is in the [README](README.m
 | 8 | Code session | Code repo | `/pipeline:verify-sim` |
 | 9 | You + session | Real environment | `/pipeline:verify-real` |
 | 10 | You | | Review the diff. Say "go" or send it back to build. |
-| 11 | Code session | Code repo | `/pipeline:pr` |
-| 12 | You | | Confirm the merge. |
-| 13 | You / design session | Design repo | Merge the design PR. |
-| 14 | Code session | Code repo | `/pipeline:merge` |
+| 11 | Code session | Code repo | `/pipeline:findings-sync` → decided findings become design PR suggestions; you choose issue or known issue for open ones |
+| 12 | You | Design PR on GitHub | Commit the suggestions (edit them if needed). Then rerun `/pipeline:spec <domain> design/<project>` in the code repo. |
+| 13 | Reviewer subagent | Code repo | `/pipeline:verify-design` → `.pipeline/conformance-report.md`. Fail: back to step 7. |
+| 14 | Code session | Code repo | `/pipeline:pr` |
+| 15 | You | | Confirm the merge. |
+| 16 | You | Design repo | Merge the design PR. |
+| 17 | Code session | Code repo | `/pipeline:merge` |
 
 ## Handle a finding
 
-1. The agent stops and writes `.pipeline/findings/F-xxx.md`.
-2. You decide, and write the decision in the finding.
-3. Run `/pipeline:design <project>` in the design repo. This records the decision in the design PR.
-4. Back in the code repo, rerun `/pipeline:spec <domain> design/<project>`. It fetches the updated branch.
+The agent raises it with `/pipeline:finding`, writes it to the findings archive (`.pipeline/findings/<project>/F-xxx.md`, on the `pipeline/findings` branch), pauses the affected task and asks you to choose an option. Answer in the terminal.
+
+**Domain finding** (only this domain is affected):
+
+1. You choose. The agent records the decision and continues the build with it.
+2. The decision reaches the design at step 11, together with the others.
+
+**Cross-domain finding** (touches an interface, a shared constraint or another domain's component):
+
+1. You choose. The agent records the decision; the affected task stays paused.
+2. Run `/pipeline:findings-sync F-xxx`. It posts the design change on the design PR.
+3. Commit the suggestion on GitHub.
+4. Rerun `/pipeline:spec <domain> design/<project>`. The finding becomes `applied` and the build continues.
+5. Other domains see "design changed, rerun `/pipeline:spec`" when their next session starts.
+
+**Undecided at the end** (step 11): you choose per finding between a GitHub issue in the design repo or a known issue in the code PR description.
 
 ## Handle a test failure
 
@@ -38,6 +53,11 @@ The test report classifies each failure:
 
 On the 3rd failure of the same AC, it becomes a finding.
 
+## Look up why something was decided
+
+- **The design says X:** the merged design PR that changed that file holds the decision, and its comments hold the findings behind it.
+- **A finding's full history:** the `pipeline/findings` branch of the code repo that raised it, under `<project>/`.
+
 ## Change the pipeline
 
 1. Edit the skill, template or hook in this repo.
@@ -48,6 +68,7 @@ On the 3rd failure of the same AC, it becomes a finding.
 ## Quick rules
 
 - Never edit `design/` from a code repo. A hook blocks it.
-- Only you set `status: approved`.
+- Only you set `status: approved` on a plan and decide findings.
+- Cross-domain decisions reach the design before the build continues; domain decisions reach it before the PR.
 - The design PR merges before the code PR.
 - Cite IDs, don't copy content.

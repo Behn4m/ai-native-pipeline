@@ -8,4 +8,4 @@ Create one issue per code repo per milestone.
 - **Design branch:** design/<project>
 - **Acceptance criteria:** <AC IDs this issue must pass>
 - **Owned components:** <CMP IDs>
-- **Status flow:** Spec → Plan → Verify → Green light → Build → Sim → Real → Review → PR → Merged
+- **Status flow:** Spec → Plan → Verify → Green light → Build → Sim → Real → Review → Findings sync → Design applied → Conformance → PR → Merged

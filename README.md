@@ -9,7 +9,7 @@ Agents write code fast, but on their own they drift. They make up interfaces, wo
 - **One source of truth.** A system design repo (`prd.md`, `components.md`, `dataflow.md`, `userflow.md`, `constraints.md`) describes the whole product. Only the design session edits it.
 - **One agent per domain.** Each code repo (frontend, backend, app, HW…) has its own session, and sessions run in parallel. Every code repo includes the design repo as a read-only submodule and imports its `CLAUDE.md`, so all agents share the same system model.
 - **Spec before code.** Each agent turns the design into a domain spec and a plan before it writes any code. An independent reviewer checks the plan against the design.
-- **Findings, not workarounds.** When an agent finds a gap or contradiction, it reports it and stops. You decide, and the decision goes back into the design.
+- **Findings, not workarounds.** When an agent finds a gap or contradiction, it records it in a findings archive and pauses. You decide. Decisions that affect other domains go into the design straight away; the rest are proposed as design changes before the code merges, and a reviewer checks the code matches the updated design.
 - **Humans at the gates.** You set the scope, approve deviations, review the diff and confirm merges. Agents do everything in between.
 - **Same method everywhere.** The pipeline ships as a Claude Code plugin:
   - Skills fix the procedure for each step.
@@ -73,7 +73,8 @@ Type `/pipeline:` to check that the skills are listed.
 4. In `CLAUDE.md`, fill:
    - The **Domain** section: domain, owned `CMP-` IDs, Linear project.
    - The **Build and test** commands.
-5. Commit.
+5. Commit. The scaffold's `.gitignore` keeps the findings archive out of code branches.
+6. After the first `/pipeline:finding` creates the `pipeline/findings` branch, protect it on GitHub: no deletion, no merging into `main`.
 
 ### 4. Set up Linear
 

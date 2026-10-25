@@ -1,6 +1,7 @@
 **Linear issue:** <link>
-**Design SHA:** <design submodule commit>
+**Design branch / SHA:** <design/project> @ <design submodule commit>
 **Spec / plan:** [docs/spec.md](docs/spec.md), [docs/plan.md](docs/plan.md)
+**Conformance:** [.pipeline/conformance-report.md](.pipeline/conformance-report.md) — <pass>
 
 ## What changed
 
@@ -16,9 +17,19 @@
 
 - <none / deviation and who approved>
 
-## Findings raised
+## Findings
 
-- <none / F-xxx and the design PR that resolved it>
+| Finding | Scope | Decision | Design record |
+|---|---|---|---|
+| <repo>#F-xxx | domain / cross-domain | <option> | <design PR comment or issue link> |
+
+## Known issues
+
+Open findings the product lead chose to ship with. Each still needs a decision.
+
+| Finding | Summary | Impact |
+|---|---|---|
+| <none / repo#F-xxx> | <one line> | <one line> |
 
 ## Merge order
 

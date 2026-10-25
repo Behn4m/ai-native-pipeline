@@ -1,8 +1,11 @@
 ---
 id: F-xxx
+project: <project>
 raised_at: step <n>
 type: gap / contradiction / wrong assumption
+scope: domain / cross-domain
 status: open
+synced_to: <design PR comment link / design repo issue / known issue in code PR>
 ---
 
 # F-xxx: <title>
@@ -10,6 +13,10 @@ status: open
 ## Refers to
 
 <IDs and files involved.>
+
+## Scope reason
+
+<Why domain or cross-domain. Cross-domain if it touches a DF ID, a shared CON ID, a CMP owned by another domain, or another domain's AC.>
 
 ## Evidence
 
@@ -31,4 +38,8 @@ status: open
 
 ## Decision
 
-<Filled by the human. Link the design PR that records it.>
+<Filled by the human: the chosen option and any detail. Then set status: decided.>
+
+## Design change
+
+<Filled by /pipeline:findings-sync: the design file, section and exact proposed text.>
