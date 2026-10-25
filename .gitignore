@@ -1,7 +1,3 @@
 .DS_Store
 *.drawio.bkp
 .$*
-
-# Local workspace files
-.obsidian/
-*.zip
