@@ -29,6 +29,6 @@ This description is the permanent record of the decision. Design docs hold no hi
 |---|---|
 | <AC/CMP/DF/UF/CON-xxx> | added / changed / retired |
 
-### Affected domains
+### Affected subsystems
 
-- [ ] <domain / repo>
+- [ ] <subsystem / repo>

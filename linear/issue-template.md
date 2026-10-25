@@ -2,7 +2,7 @@
 
 Create one issue per code repo per milestone.
 
-- **Title:** [<domain>] <what this delivers>
+- **Title:** [<subsystem>] <what this delivers>
 - **Project / milestone:** <project> / <M>
 - **Repo:** <code repo>
 - **Design branch:** design/<project>

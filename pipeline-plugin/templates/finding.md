@@ -3,7 +3,7 @@ id: F-xxx
 project: <project>
 raised_at: step <n>
 type: gap / contradiction / wrong assumption
-scope: domain / cross-domain
+scope: local / cross-system
 status: open
 synced_to: <design PR comment link / design repo issue / known issue in code PR>
 ---
@@ -16,7 +16,7 @@ synced_to: <design PR comment link / design repo issue / known issue in code PR>
 
 ## Scope reason
 
-<Why domain or cross-domain. Cross-domain if it touches a DF ID, a shared CON ID, a CMP owned by another domain, or another domain's AC.>
+<Why local or cross-system. Cross-system if it touches a DF ID, a shared CON ID, a CMP owned by another subsystem, or another subsystem's AC.>
 
 ## Evidence
 

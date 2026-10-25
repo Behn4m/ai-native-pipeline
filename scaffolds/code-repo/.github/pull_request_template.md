@@ -21,7 +21,7 @@
 
 | Finding | Scope | Decision | Design record |
 |---|---|---|---|
-| <repo>#F-xxx | domain / cross-domain | <option> | <design PR comment or issue link> |
+| <repo>#F-xxx | local / cross-system | <option> | <design PR comment or issue link> |
 
 ## Known issues
 

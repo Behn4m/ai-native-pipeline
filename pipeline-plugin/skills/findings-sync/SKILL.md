@@ -1,5 +1,5 @@
 ---
-description: Step 11 of the pipeline, and immediately after a cross-domain finding is decided. Turn decided findings into suggestions on the design PR and report open ones as design repo issues or known issues. Run in a code repo.
+description: Step 11 of the pipeline, and immediately after a cross-system finding is decided. Turn decided findings into suggestions on the design PR and report open ones as design repo issues or known issues. Run in a code repo.
 argument-hint: [F-xxx | all]
 disable-model-invocation: true
 allowed-tools: Bash(git -C .pipeline/findings *) Bash(git -C design *) Bash(gh pr *) Bash(gh issue *) Bash(gh api *)
@@ -38,4 +38,4 @@ Set `status: synced`. Ask in one message for all open findings, not one at a tim
 
 1. Commit and push the archive: `git -C .pipeline/findings commit -am "Sync <project> findings"`, then push.
 2. Report a table: finding, scope, status, where it went.
-3. Tell the human what's next: apply the suggestions on the design PR, then run `/pipeline:spec <domain> <design_branch>` here. That run marks applied findings `applied`.
+3. Tell the human what's next: apply the suggestions on the design PR, then run `/pipeline:spec <subsystem> <design_branch>` here. That run marks applied findings `applied`.

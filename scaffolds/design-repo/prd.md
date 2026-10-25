@@ -34,9 +34,9 @@ Out of scope:
 
 These are the test plan. Every code repo's spec selects the subset it must pass.
 
-| ID | Criterion | Verified by | Domains |
+| ID | Criterion | Verified by | Subsystems |
 |---|---|---|---|
-| AC-001 | <observable, pass/fail statement> | sim / real / both | <domain> |
+| AC-001 | <observable, pass/fail statement> | sim / real / both | <subsystem> |
 
 ## Open questions
 

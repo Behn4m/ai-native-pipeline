@@ -14,7 +14,7 @@ code_commit: <commit>
 | Spec `design_sha` is the current design branch head | pass / fail | |
 | Every decided finding is on the design branch (status `applied`) | pass / fail | |
 | Every decided finding is implemented in the code | pass / fail | |
-| Every DF this domain produces or consumes matches `dataflow.md` | pass / fail | |
+| Every DF this subsystem produces or consumes matches `dataflow.md` | pass / fail | |
 | Every applicable CON is met | pass / fail | |
 | Every AC in the spec has a passing test result | pass / fail | |
 | No behaviour in the code lacks a design or finding basis | pass / fail | |

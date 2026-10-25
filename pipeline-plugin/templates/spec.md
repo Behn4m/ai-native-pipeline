@@ -1,22 +1,22 @@
 ---
-domain: <domain>
+subsystem: <subsystem>
 design_branch: <design/project>
 design_sha: <design submodule commit>
 linear_project: <link>
 ---
 
-# Domain spec: <domain>
+# Subsystem spec: <subsystem>
 
-What this domain must do, derived from the system design. Cite IDs; do not restate design content.
+What this subsystem must do, derived from the system design. Cite IDs; do not restate design content.
 
 ## Scope
 
 - **Owns:** <CMP IDs>
-- **Out of scope (owned elsewhere):** <CMP IDs and their domain>
+- **Out of scope (owned elsewhere):** <CMP IDs and their subsystem>
 
 ## Responsibilities
 
-| User flow step | This domain provides |
+| User flow step | This subsystem provides |
 |---|---|
 | UF-xxx step n | <behaviour> |
 
@@ -24,11 +24,11 @@ What this domain must do, derived from the system design. Cite IDs; do not resta
 
 | DF ID | Role | Notes |
 |---|---|---|
-| DF-xxx | produces / consumes | <what this domain relies on; no redefinition> |
+| DF-xxx | produces / consumes | <what this subsystem relies on; no redefinition> |
 
 ## Constraints
 
-- <CON IDs that apply, with how they bind this domain>
+- <CON IDs that apply, with how they bind this subsystem>
 
 ## Acceptance criteria
 
@@ -38,4 +38,4 @@ What this domain must do, derived from the system design. Cite IDs; do not resta
 
 ## Design diff impact
 
-<What changed on the design branch vs design main and how it affects this domain. "None" if nothing.>
+<What changed on the design branch vs design main and how it affects this subsystem. "None" if nothing.>

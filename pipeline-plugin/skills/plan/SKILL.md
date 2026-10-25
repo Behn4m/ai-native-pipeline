@@ -1,5 +1,5 @@
 ---
-description: Step 4 of the pipeline. Write docs/detailed-design.md and docs/plan.md from the domain spec. No code. Run in a code repo.
+description: Step 4 of the pipeline. Write docs/detailed-design.md and docs/plan.md from the subsystem spec. No code. Run in a code repo.
 argument-hint: <linear-issue>
 disable-model-invocation: true
 ---

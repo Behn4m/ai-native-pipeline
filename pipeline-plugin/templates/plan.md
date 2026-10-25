@@ -26,7 +26,7 @@ design_sha: <design submodule commit>
 
 ## Dependencies
 
-- <other domain's DF ID that must be live, new libraries>
+- <other subsystem's DF ID that must be live, new libraries>
 
 ## Deviations
 

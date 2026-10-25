@@ -1,5 +1,5 @@
 ---
-description: Step 5 of the pipeline. Independently check the domain spec and plan against the system design and prd.md, and list deviations for green light. Run in a code repo.
+description: Step 5 of the pipeline. Independently check the subsystem spec and plan against the system design and prd.md, and list deviations for green light. Run in a code repo.
 disable-model-invocation: true
 context: fork
 background: false

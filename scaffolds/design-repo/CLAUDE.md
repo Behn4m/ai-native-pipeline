@@ -23,7 +23,7 @@ You are the only editor of this repo.
 | File | Holds | IDs |
 |---|---|---|
 | [prd.md](prd.md) | Problem, users, scope, milestones, acceptance criteria | `AC-` |
-| [components.md](components.md) | What exists and which domain owns it | `CMP-` |
+| [components.md](components.md) | What exists and which subsystem owns it | `CMP-` |
 | [dataflow.md](dataflow.md) | What moves between components; interface contracts | `DF-` |
 | [userflow.md](userflow.md) | User journeys | `UF-` |
 | [constraints.md](constraints.md) | Non-functional limits | `CON-` |

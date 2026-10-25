@@ -9,8 +9,8 @@ Run in a **code repo**.
 2. Confirm `design_sha` in the spec matches `git -C design rev-parse HEAD`. If not, stop and ask the human to rerun `/pipeline:spec`.
 3. Read the findings in `.pipeline/findings/<project>/` (project = `design_branch` in the spec without `design/`):
    - `open`: do not work on the affected task. Work on other tasks, or stop if none are left.
-   - `decided`, scope `domain`: implement the decision in the affected task.
-   - `decided` or `synced`, scope `cross-domain`: do not work on the affected task until it is `applied`.
+   - `decided`, scope `local`: implement the decision in the affected task.
+   - `decided` or `synced`, scope `cross-system`: do not work on the affected task until it is `applied`.
    - `applied`: the design already states the decision; follow the design.
 4. Create or switch to a work branch named after the Linear issue.
 5. Implement tasks in plan order. After every change, run the build, unit tests and lint from CLAUDE.md. Fix failures before moving on.
