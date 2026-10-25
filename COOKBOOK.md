@@ -8,7 +8,7 @@ Recipes for running work through the pipeline. Setup is in the [README](README.m
 |---|---|---|---|
 | 1 | You | Linear + design repo | Create the project from `linear/project-template.md`. Fill `prd.md` on branch `design/<project>`, including `AC-` IDs. |
 | 2 | Design session | Design repo | `/pipeline:design <project>` → design PR opened |
-| 3 | Code session | Each affected code repo | `/pipeline:spec <domain>` → `docs/spec.md` |
+| 3 | Code session | Each affected code repo | `/pipeline:spec <domain> design/<project>` → `docs/spec.md` |
 | 4 | Code session | Code repo | `/pipeline:plan <linear-issue>` → `docs/plan.md`, `docs/detailed-design.md` |
 | 5 | Reviewer subagent | Code repo | `/pipeline:verify-plan` → `.pipeline/verify-report.md` |
 | 6 | You | | Read the report. To approve, set `status: approved` in `plan.md`. To revise, go back to step 4. |
@@ -26,7 +26,7 @@ Recipes for running work through the pipeline. Setup is in the [README](README.m
 1. The agent stops and writes `.pipeline/findings/F-xxx.md`.
 2. You decide, and write the decision in the finding.
 3. Run `/pipeline:design <project>` in the design repo. This records the decision in the design PR.
-4. Back in the code repo, rerun from `/pipeline:spec`.
+4. Back in the code repo, rerun `/pipeline:spec <domain> design/<project>`. It fetches the updated branch.
 
 ## Handle a test failure
 

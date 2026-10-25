@@ -1,5 +1,6 @@
 ---
 domain: <domain>
+design_branch: <design/project>
 design_sha: <design submodule commit>
 linear_project: <link>
 ---

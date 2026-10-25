@@ -1,20 +1,35 @@
 ---
-description: Step 3 of the pipeline. Derive this code repo's domain spec (docs/spec.md) from the system design branch. Run in a code repo.
-argument-hint: <domain>
+description: Step 3 of the pipeline. Derive this code repo's domain spec (docs/spec.md) from a system design branch. Run in a code repo.
+argument-hint: <domain> <design-branch>
+arguments: [domain, branch]
 disable-model-invocation: true
+allowed-tools: Bash(git -C design *)
 ---
 
 Run in a **code repo**. `design/` is read-only.
 
-Domain: $ARGUMENTS
+- Domain: $domain
+- Design branch: $branch
 
-1. Ask the human for the design branch if not given. Run `git -C design fetch`, check out that branch in the submodule, and record `git -C design rev-parse HEAD` as `design_sha`.
-2. Read the design CLAUDE.md, then the diff between design main and the branch (`git -C design diff origin/main...HEAD`).
+## Design state
+
+The submodule was fetched and checked out at `$branch` before this skill loaded. Commit:
+
+!`git -C design fetch -q origin && git -C design checkout -q $branch && git -C design pull -q --ff-only && git -C design rev-parse HEAD`
+
+## Changes on $branch vs design main
+
+!`git -C design diff origin/main...HEAD`
+
+## Steps
+
+1. Record the commit above as `design_sha` and `$branch` as `design_branch` in the spec header.
+2. Read `design/CLAUDE.md`, then the changes above, then every design doc that touches domain $domain.
 3. Fill `docs/spec.md` from `${CLAUDE_PLUGIN_ROOT}/templates/spec.md`:
-   - Owned components: the CMP IDs whose domain is $ARGUMENTS.
+   - Owned components: the CMP IDs whose domain is $domain.
    - Responsibilities: trace to UF steps.
    - Interfaces: cite DF IDs only. Never define or extend one.
    - Constraints and acceptance criteria: only the CON and AC IDs that apply to this domain.
-   - Design diff impact: what the branch changes for this domain.
+   - Design diff impact: what the changes above mean for this domain. "None" if nothing.
 4. If the design is missing something this domain needs, contradicts itself, or rests on a wrong assumption, run `/pipeline:finding` and stop.
 5. Report the spec summary and any open points. Do not start the plan.
