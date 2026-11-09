@@ -13,6 +13,7 @@
 - `design/` is the system design submodule. It is read-only; a hook blocks edits.
 - Never define or change an interface. Interfaces live in `design/dataflow.md`. If one is missing or wrong, run `/pipeline:finding`.
 - Never code around a gap, contradiction or wrong assumption. Run `/pipeline:finding` and pause the affected task.
+- Work only on `work/<project>`. Skills commit and push there; never push to main. Main changes only at step 17 (`/pipeline:merge`, squash).
 - Build only from a plan with `status: approved` in `docs/plan.md`, never past an `open` finding, and never past a cross-system decision that isn't applied to the system design yet.
 - Pipeline documents:
   - `docs/spec.md`: subsystem spec (step 3)

@@ -8,10 +8,10 @@ Recipes for running work through the pipeline. Setup is in the [README](README.m
 |---|---|---|---|
 | 1 | You | Linear + design repo | Create the project from `linear/project-template.md`. Fill `prd.md` on branch `design/<project>`, including `AC-` IDs. |
 | 2 | Design session | Design repo | `/pipeline:design <project>` → design PR opened |
-| 3 | Code session | Each affected code repo | `/pipeline:spec <subsystem> design/<project>` → `docs/spec.md` |
+| 3 | Code session | Each affected code repo | `/pipeline:spec <subsystem> design/<project>` → `docs/spec.md` on branch `work/<project>` |
 | 4 | Code session | Code repo | `/pipeline:plan <linear-issue>` → `docs/plan.md`, `docs/subsystem-design.md` |
 | 5 | Reviewer subagent | Code repo | `/pipeline:verify-plan` → `.pipeline/verify-report.md` |
-| 6 | You | | Read the report. To approve, set `status: approved` in `plan.md`. To revise, go back to step 4. |
+| 6 | You | | Read the report. To approve, set `status: approved` in `plan.md`. To revise, go back to step 4. `/pipeline:build` commits your approval. |
 | 7 | Code session | Code repo | `/pipeline:build` |
 | 8 | Code session | Code repo | `/pipeline:verify-sim` |
 | 9 | You + session | Real environment | `/pipeline:verify-real` |
@@ -71,4 +71,5 @@ On the 3rd failure of the same AC, it becomes a finding.
 - Only you set `status: approved` on a plan and decide findings.
 - Cross-system decisions reach the system design before the build continues; local decisions reach it before the PR.
 - The design PR merges once, after every affected subsystem's code PR is open; then each code PR merges.
+- Each code repo works on `work/<project>`; skills commit and push there. Nothing reaches main before step 17.
 - Cite IDs, don't copy content.

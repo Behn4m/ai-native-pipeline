@@ -17,21 +17,34 @@ The system design repo is the single source of truth. Code repos implement again
 |---|---|---|---|---|---|
 | 1 | Project scope | Human | Need | `prd.md`, Linear project and milestones | |
 | 2 | System design | Design session | `prd.md` | Design branch, updated system design docs, design PR stating the decision | |
-| 3 | Subsystem spec | Implementation session | Design branch | `docs/spec.md` | |
+| 3 | Subsystem spec | Implementation session | Design branch | `work/<project>` branch, `docs/spec.md` | |
 | 4 | Implementation plan | Implementation session | `docs/spec.md` | `docs/subsystem-design.md`, `docs/plan.md` | |
 | 5 | Verify plan | Reviewer | Spec, plan, design, `prd.md` | `.pipeline/verify-report.md` with deviations | Must pass |
 | 6 | Green light | Human | Verify report | Plan `status: approved`, or revise | Human |
-| 7 | Build | Implementation session | Approved plan, decided findings | Code on a work branch | Plan approved, no blocking findings |
+| 7 | Build | Implementation session | Approved plan, decided findings | Code committed task by task on `work/<project>` | Plan approved, no blocking findings |
 | 8 | Verify on simulation | Implementation session | Code, acceptance criteria | `.pipeline/test-report.md` | |
 | 9 | Verify on real scenario | Human and implementation session | Code, acceptance criteria | `.pipeline/test-report.md` | |
 | 10 | Review diff | Human | Diff and reports | Go, or back to step 7 | Human |
 | 11 | Findings sync | Implementation session | Findings archive | Design PR suggestions (decided), issues or known issues (open) | |
 | 12 | Apply design suggestions | Human | Design PR suggestions | Design branch updated; `/pipeline:spec` rerun | Human |
 | 13 | Conformance check | Reviewer | Code, spec, updated design, findings | `.pipeline/conformance-report.md` | Must pass |
-| 14 | Commit, push, open PR | Implementation session | Go, conformance pass | Code PR linked to Linear | |
+| 14 | Open code PR | Implementation session | Go, conformance pass | Code PR linked to Linear | |
 | 15 | Confirm merge (once per project) | Human | Design PR, every affected subsystem's code PR | Explicit confirmation | Human: every affected subsystem is at step 14 and its conformance report checked the current design branch head |
 | 16 | Merge design PR (once per project) | Human | Confirmation | Design main updated | |
 | 17 | Point submodule at design main, merge code PR (each code repo) | Implementation session | Design main | Code PR squash-merged | |
+
+### Work branch
+
+Each code repo does all work for a project on `work/<project>` (project = design branch without `design/`), created by `/pipeline:spec`. Skills commit their outputs there and push after every commit, so no work lives only on one machine:
+
+- Spec and the design submodule pointer (step 3).
+- Plan (step 4).
+- Verify report and the human's approval, committed by `/pipeline:build` at its start.
+- Code after every task (step 7).
+- Test reports (steps 8–9).
+- Conformance report, committed by `/pipeline:pr`.
+
+Pushing the work branch is not a PR. Nothing reaches main until step 17.
 
 ### Merging a project
 
@@ -110,6 +123,7 @@ Every design element has a stable ID. Specs, plans, tests and PRs cite IDs inste
 - System design docs hold no code and no history. Decisions live in design PR descriptions and comments.
 - Interfaces are defined only in `dataflow.md`. A spec that needs a new or changed interface raises a cross-system finding.
 - The `design/` submodule is read-only in code repos. A hook enforces this.
+- Code repos work only on `work/<project>`. Commit and push there freely; never push to main. Main changes only by the squash merge at step 17.
 - Code is built only from a plan with `status: approved`, and never past an `open` finding or an unapplied cross-system decision.
 - Every decision reaches the system design before the code PR opens.
 - The design PR merges once per project, after every affected subsystem's code PR is open with a passing conformance check, and before any code PR merges.

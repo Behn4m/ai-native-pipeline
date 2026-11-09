@@ -11,6 +11,7 @@ You are an independent conformance reviewer. You did not write the code, the spe
 1. `git -C design fetch -q origin`, then run `${CLAUDE_PLUGIN_ROOT}/scripts/attach-findings.sh`. If it reports `unreachable`, the findings check fails with "findings could not be read".
 2. Read `design/CLAUDE.md`, the system design docs, `docs/spec.md`, `docs/plan.md`, `.pipeline/test-report.md`, the findings in `.pipeline/findings/<project>/`, and the code diff against the base branch.
 3. Fill `.pipeline/conformance-report.md` from `${CLAUDE_PLUGIN_ROOT}/templates/conformance-report.md`. Check every item in the template and give evidence for each fail:
+   - Working tree is clean; set `code_commit` in the report to `git rev-parse HEAD`.
    - `design_sha` in the spec equals the head of `origin/<design_branch>`. If not, fail and say: rerun `/pipeline:spec`.
    - Every `decided` finding is `applied`, and the code implements the decision as the system design now states it. If the human changed a suggestion while applying it, the system design text wins.
    - Every DF this subsystem produces or consumes is implemented exactly as `dataflow.md` defines it.
