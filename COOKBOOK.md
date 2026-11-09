@@ -20,9 +20,9 @@ Recipes for running work through the pipeline. Setup is in the [README](README.m
 | 12 | You | Design PR on GitHub | Commit the suggestions (edit them if needed). Then rerun `/pipeline:spec <subsystem> design/<project>` in the code repo. |
 | 13 | Reviewer subagent | Code repo | `/pipeline:verify-design` → `.pipeline/conformance-report.md`. Fail: back to step 7. |
 | 14 | Code session | Code repo | `/pipeline:pr` |
-| 15 | You | | Confirm the merge. |
-| 16 | You | Design repo | Merge the design PR. |
-| 17 | Code session | Code repo | `/pipeline:merge` |
+| 15 | You | Design PR | When every box under "Affected subsystems" is ticked, confirm the merge. |
+| 16 | You | Design repo | Merge the design PR (once for the project). |
+| 17 | Code session | Each code repo | `/pipeline:merge` |
 
 ## Handle a finding
 
@@ -70,5 +70,5 @@ On the 3rd failure of the same AC, it becomes a finding.
 - Never edit `design/` from a code repo. A hook blocks it.
 - Only you set `status: approved` on a plan and decide findings.
 - Cross-system decisions reach the system design before the build continues; local decisions reach it before the PR.
-- The design PR merges before the code PR.
+- The design PR merges once, after every affected subsystem's code PR is open; then each code PR merges.
 - Cite IDs, don't copy content.

@@ -31,4 +31,6 @@ This description is the permanent record of the decision. System design docs hol
 
 ### Affected subsystems
 
-- [ ] <subsystem / repo>
+Merge this PR only when every box is ticked: each subsystem's code PR is open and its conformance report checked this branch's current head.
+
+- [ ] <subsystem / repo> — code PR: <link>

@@ -12,4 +12,5 @@ Run in a **code repo**.
    - **Findings**: every finding of this project with its decision and link (`synced_to`).
    - **Known issues**: every finding whose `synced_to` is `known issue in code PR`, with its summary and impact.
 4. Link the PR to the Linear issue and project.
-5. Report the PR link. Do not merge.
+5. Report readiness on the design PR. Find it as findings-sync does: `git -C design remote get-url origin`, then `gh pr list -R <design-repo> --head <design_branch> --json number,url`. Post the comment `[<repo>] code PR ready: <code PR URL>, conformance pass at design <design_sha short>`. Tell the human to tick this subsystem's box under "Affected subsystems".
+6. Report the PR link. Do not merge.

@@ -7,6 +7,7 @@ Release history of the pipeline. Versions match `version` in [pipeline-plugin/.c
 - Terminology: "System design" for the design repo, "Subsystem design" and "Subsystem spec" for code repos. `docs/detailed-design.md` is now `docs/subsystem-design.md`.
 - Diagram updated to the 17 steps.
 - Findings archive is attached automatically (new `attach-findings.sh`, run at session start and by every skill that reads findings), so fresh and shallow clones see open findings; skills stop if the archive can't be reached.
+- Design PR merges once per project, after every affected subsystem's code PR is open with a passing conformance check; `/pipeline:pr` reports readiness on the design PR, `/pipeline:merge` checks design main by content (squash-safe), and the session-start hook reports a merged/deleted design branch.
 - Added this changelog.
 
 ## 0.2.1 — 2026-10-25

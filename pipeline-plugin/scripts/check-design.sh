@@ -17,6 +17,12 @@ sha=$(field design_sha)
 case "$branch" in ""|"<"*) exit 0 ;; esac
 
 timeout 15 git -C "$root/design" fetch -q origin "$branch" 2>/dev/null
+git -C "$root/design" ls-remote --exit-code origin "refs/heads/$branch" >/dev/null 2>&1
+if [ $? -eq 2 ]; then
+  echo "Pipeline: the design branch $branch no longer exists on origin; the design PR was merged or closed."
+  echo "If this repo's code PR is open, run /pipeline:merge. Otherwise stop and ask the human; do not plan or build."
+  exit 0
+fi
 head=$(git -C "$root/design" rev-parse -q --verify "origin/$branch" 2>/dev/null)
 if [ -n "$head" ] && [ "$head" != "$sha" ]; then
   echo "Pipeline: the design branch $branch moved since docs/spec.md was written (spec ${sha:0:7}, branch ${head:0:7})."

@@ -29,9 +29,13 @@ The system design repo is the single source of truth. Code repos implement again
 | 12 | Apply design suggestions | Human | Design PR suggestions | Design branch updated; `/pipeline:spec` rerun | Human |
 | 13 | Conformance check | Reviewer | Code, spec, updated design, findings | `.pipeline/conformance-report.md` | Must pass |
 | 14 | Commit, push, open PR | Implementation session | Go, conformance pass | Code PR linked to Linear | |
-| 15 | Confirm merge | Human | Both PRs | Explicit confirmation | Human |
-| 16 | Merge design PR first | Human | Confirmation | Design main updated | |
-| 17 | Point submodule at design main, merge code PR | Implementation session | Design main | Code PR squash-merged | |
+| 15 | Confirm merge (once per project) | Human | Design PR, every affected subsystem's code PR | Explicit confirmation | Human: every affected subsystem is at step 14 and its conformance report checked the current design branch head |
+| 16 | Merge design PR (once per project) | Human | Confirmation | Design main updated | |
+| 17 | Point submodule at design main, merge code PR (each code repo) | Implementation session | Design main | Code PR squash-merged | |
+
+### Merging a project
+
+One design PR serves every affected subsystem, so it merges once: after every subsystem in its "Affected subsystems" checklist has an open code PR with a passing conformance report against the current design branch head. A subsystem that finishes early waits with its code PR open. If the design branch moves after a subsystem's conformance check (for example, another subsystem's cross-system decision was applied), that subsystem reruns `/pipeline:spec` and `/pipeline:verify-design` before the gate.
 
 ## Findings
 
@@ -108,4 +112,4 @@ Every design element has a stable ID. Specs, plans, tests and PRs cite IDs inste
 - The `design/` submodule is read-only in code repos. A hook enforces this.
 - Code is built only from a plan with `status: approved`, and never past an `open` finding or an unapplied cross-system decision.
 - Every decision reaches the system design before the code PR opens.
-- The design PR merges before the code PR.
+- The design PR merges once per project, after every affected subsystem's code PR is open with a passing conformance check, and before any code PR merges.
