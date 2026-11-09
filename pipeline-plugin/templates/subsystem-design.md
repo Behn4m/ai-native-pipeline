@@ -1,4 +1,4 @@
-# Detailed design: <repo>
+# Subsystem design: <repo>
 
 Internal structure of this repo. Implements [spec.md](spec.md).
 

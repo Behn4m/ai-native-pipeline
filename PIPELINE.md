@@ -1,24 +1,24 @@
 # Pipeline rulebook
 
-The system design repo is the single source of truth. Code repos implement against it and never change it. Every gap found during implementation goes to a human; agents never code around it. Every decision reaches the design before the code merges.
+The system design repo is the single source of truth. Code repos implement against it and never change it. Every gap found during implementation goes to a human; agents never code around it. Every decision reaches the system design before the code merges.
 
 ## Roles
 
 | Role | Where | Does |
 |---|---|---|
 | Product management (human) | Linear, design repo | Scopes, decides findings, gives green light, applies design suggestions, confirms merges. |
-| Design session (agent) | Design repo | The only agent that edits design docs. Writes the high-level design. |
+| Design session (agent) | Design repo | The only agent that edits system design docs. Writes the system design. |
 | Implementation session (agent, one per code repo) | Code repo | Writes the subsystem spec, plan and code. Reads design through the `design/` submodule only. Records findings and proposes design changes. |
-| Reviewer (independent subagent) | Code repo | Checks the plan (step 5) and the finished code (step 13) against the design. Never saw them being written. |
+| Reviewer (independent subagent) | Code repo | Checks the plan (step 5) and the finished code (step 13) against the system design. Never saw them being written. |
 
 ## Steps
 
 | # | Step | Owner | Input | Output | Gate |
 |---|---|---|---|---|---|
-| 1 | Domain scope | Human | Need | `prd.md`, Linear project and milestones | |
-| 2 | High-level design | Design session | `prd.md` | Design branch, updated design docs, design PR stating the decision | |
-| 3 | Spec system design | Implementation session | Design branch | `docs/spec.md` | |
-| 4 | Implementation plan | Implementation session | `docs/spec.md` | `docs/detailed-design.md`, `docs/plan.md` | |
+| 1 | Project scope | Human | Need | `prd.md`, Linear project and milestones | |
+| 2 | System design | Design session | `prd.md` | Design branch, updated system design docs, design PR stating the decision | |
+| 3 | Subsystem spec | Implementation session | Design branch | `docs/spec.md` | |
+| 4 | Implementation plan | Implementation session | `docs/spec.md` | `docs/subsystem-design.md`, `docs/plan.md` | |
 | 5 | Verify plan | Reviewer | Spec, plan, design, `prd.md` | `.pipeline/verify-report.md` with deviations | Must pass |
 | 6 | Green light | Human | Verify report | Plan `status: approved`, or revise | Human |
 | 7 | Build | Implementation session | Approved plan, decided findings | Code on a work branch | Plan approved, no blocking findings |
@@ -35,7 +35,7 @@ The system design repo is the single source of truth. Code repos implement again
 
 ## Findings
 
-A finding is a gap, contradiction or wrong assumption in the design, found at any step.
+A finding is a gap, contradiction or wrong assumption in the system design, found at any step.
 
 ### Where findings live
 
@@ -54,10 +54,10 @@ pipeline/findings
 
 Every finding is classified when it is raised:
 
-| Scope | Means | Path to the design |
+| Scope | Means | Path to the system design |
 |---|---|---|
-| `local` | Only this subsystem's behaviour is affected. | Batched. Synced to the design at step 11, before the PR. |
-| `cross-system` | It touches an interface (`DF-`), a shared constraint (`CON-`), a component another subsystem owns, or another subsystem's acceptance criteria. | Immediately. Build on the affected task waits until the design is updated, so every subsystem complies. |
+| `local` | Only this subsystem's behaviour is affected. | Batched. Synced to the system design at step 11, before the PR. |
+| `cross-system` | It touches an interface (`DF-`), a shared constraint (`CON-`), a component another subsystem owns, or another subsystem's acceptance criteria. | Immediately. Build on the affected task waits until the system design is updated, so every subsystem complies. |
 
 ### Lifecycle
 
@@ -73,8 +73,8 @@ Every finding is classified when it is raised:
 
 1. The agent raises the finding and pauses the affected task.
 2. You decide and write the decision in the finding.
-3. **Local finding:** the build continues and implements the decision. The decision reaches the design at step 11.
-4. **Cross-system finding:** run `/pipeline:findings-sync` now, apply the suggestion on the design PR, rerun `/pipeline:spec`, then continue the build. Other subsystems are warned at session start that the design moved and rerun their spec.
+3. **Local finding:** the build continues and implements the decision. The decision reaches the system design at step 11.
+4. **Cross-system finding:** run `/pipeline:findings-sync` now, apply the suggestion on the design PR, rerun `/pipeline:spec`, then continue the build. Other subsystems are warned at session start that the system design moved and rerun their spec.
 5. **At step 11**, every decided finding becomes a suggestion on the design PR. Every open finding becomes either a GitHub issue in the design repo or a known issue in the code PR description; you choose per finding.
 6. **At step 13**, the reviewer checks that the code matches the updated design and that every decision is in it.
 
@@ -103,9 +103,9 @@ Every design element has a stable ID. Specs, plans, tests and PRs cite IDs inste
 
 ## Rules
 
-- Design docs hold no code and no history. Decisions live in design PR descriptions and comments.
+- System design docs hold no code and no history. Decisions live in design PR descriptions and comments.
 - Interfaces are defined only in `dataflow.md`. A spec that needs a new or changed interface raises a cross-system finding.
 - The `design/` submodule is read-only in code repos. A hook enforces this.
 - Code is built only from a plan with `status: approved`, and never past an `open` finding or an unapplied cross-system decision.
-- Every decision reaches the design before the code PR opens.
+- Every decision reaches the system design before the code PR opens.
 - The design PR merges before the code PR.

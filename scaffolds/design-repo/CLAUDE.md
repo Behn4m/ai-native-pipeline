@@ -4,7 +4,7 @@ This repo is the system design for <product>. It is the source of truth for ever
 
 ## If you are in a code repo
 
-Everything under `design/` is read-only. Cite IDs from these docs; do not restate or redefine them. If the design is missing something, is contradictory, or rests on a wrong assumption, run `/pipeline:finding` and stop.
+Everything under `design/` is read-only. Cite IDs from these docs; do not restate or redefine them. If the system design is missing something, is contradictory, or rests on a wrong assumption, run `/pipeline:finding` and stop.
 
 ## If you are the design session
 

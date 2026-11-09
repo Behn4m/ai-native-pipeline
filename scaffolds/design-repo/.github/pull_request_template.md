@@ -1,6 +1,6 @@
 ## Decision record
 
-This description is the permanent record of the decision. Design docs hold no history.
+This description is the permanent record of the decision. System design docs hold no history.
 
 **Linear project:** <link>
 **Trigger:** <new scope / finding F-xxx / green-light deviation>
@@ -11,7 +11,7 @@ This description is the permanent record of the decision. Design docs hold no hi
 
 ### Decision
 
-<What the design now says, in one paragraph.>
+<What the system design now says, in one paragraph.>
 
 ### Alternatives considered
 

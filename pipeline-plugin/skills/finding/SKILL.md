@@ -32,4 +32,4 @@ Confirm `git check-ignore .pipeline/findings` succeeds. If not, stop and tell th
 2. Tell the human: the finding ID, scope, one-line summary, options and recommendation, and ask which option they choose.
 3. When the human answers in this conversation, write their choice under Decision, set `status: decided`, commit and push.
    - **local**: the build may continue and implement the decision.
-   - **cross-system**: tell the human to run `/pipeline:findings-sync` now; the build on this task waits until the change is applied to the design and `/pipeline:spec` is rerun.
+   - **cross-system**: tell the human to run `/pipeline:findings-sync` now; the build on this task waits until the change is applied to the system design and `/pipeline:spec` is rerun.

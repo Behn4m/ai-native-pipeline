@@ -24,13 +24,13 @@ The submodule was fetched and checked out at `$branch` before this skill loaded.
 ## Steps
 
 1. Record the commit above as `design_sha` and `$branch` as `design_branch` in the spec header.
-2. Read `design/CLAUDE.md`, then the changes above, then every design doc that touches subsystem $subsystem.
+2. Read `design/CLAUDE.md`, then the changes above, then every system design doc that touches subsystem $subsystem.
 3. Fill `docs/spec.md` from `${CLAUDE_PLUGIN_ROOT}/templates/spec.md`:
    - Owned components: the CMP IDs whose subsystem is $subsystem.
    - Responsibilities: trace to UF steps.
    - Interfaces: cite DF IDs only. Never define or extend one.
    - Constraints and acceptance criteria: only the CON and AC IDs that apply to this subsystem.
    - Design diff impact: what the changes above mean for this subsystem. "None" if nothing.
-4. If the design is missing something this subsystem needs, contradicts itself, or rests on a wrong assumption, run `/pipeline:finding` and stop.
-5. If `.pipeline/findings/` exists: `git -C .pipeline/findings pull --rebase`, then for every `synced` finding of this project whose Design change now appears in the design (as committed, or as the human edited it), set `status: applied`. Commit and push the archive.
+4. If the system design is missing something this subsystem needs, contradicts itself, or rests on a wrong assumption, run `/pipeline:finding` and stop.
+5. If `.pipeline/findings/` exists: `git -C .pipeline/findings pull --rebase`, then for every `synced` finding of this project whose Design change now appears in the system design (as committed, or as the human edited it), set `status: applied`. Commit and push the archive.
 6. Report the spec summary, findings now applied, and any open points. Do not start the plan.

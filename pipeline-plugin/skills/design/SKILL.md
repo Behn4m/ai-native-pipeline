@@ -1,5 +1,5 @@
 ---
-description: Step 2 of the pipeline. Write or update the high-level system design on a design branch and open the design PR. Also applies finding decisions posted as comments on the design PR. Run in the design repo.
+description: Step 2 of the pipeline. Write or update the system design on a design branch and open the design PR. Also applies finding decisions posted as comments on the design PR. Run in the design repo.
 argument-hint: <project-slug>
 disable-model-invocation: true
 ---

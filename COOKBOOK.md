@@ -9,7 +9,7 @@ Recipes for running work through the pipeline. Setup is in the [README](README.m
 | 1 | You | Linear + design repo | Create the project from `linear/project-template.md`. Fill `prd.md` on branch `design/<project>`, including `AC-` IDs. |
 | 2 | Design session | Design repo | `/pipeline:design <project>` → design PR opened |
 | 3 | Code session | Each affected code repo | `/pipeline:spec <subsystem> design/<project>` → `docs/spec.md` |
-| 4 | Code session | Code repo | `/pipeline:plan <linear-issue>` → `docs/plan.md`, `docs/detailed-design.md` |
+| 4 | Code session | Code repo | `/pipeline:plan <linear-issue>` → `docs/plan.md`, `docs/subsystem-design.md` |
 | 5 | Reviewer subagent | Code repo | `/pipeline:verify-plan` → `.pipeline/verify-report.md` |
 | 6 | You | | Read the report. To approve, set `status: approved` in `plan.md`. To revise, go back to step 4. |
 | 7 | Code session | Code repo | `/pipeline:build` |
@@ -31,7 +31,7 @@ The agent raises it with `/pipeline:finding`, writes it to the findings archive 
 **Local finding** (only this subsystem is affected):
 
 1. You choose. The agent records the decision and continues the build with it.
-2. The decision reaches the design at step 11, together with the others.
+2. The decision reaches the system design at step 11, together with the others.
 
 **Cross-system finding** (touches an interface, a shared constraint or another subsystem's component):
 
@@ -55,7 +55,7 @@ On the 3rd failure of the same AC, it becomes a finding.
 
 ## Look up why something was decided
 
-- **The design says X:** the merged design PR that changed that file holds the decision, and its comments hold the findings behind it.
+- **The system design says X:** the merged design PR that changed that file holds the decision, and its comments hold the findings behind it.
 - **A finding's full history:** the `pipeline/findings` branch of the code repo that raised it, under `<project>/`.
 
 ## Change the pipeline
@@ -69,6 +69,6 @@ On the 3rd failure of the same AC, it becomes a finding.
 
 - Never edit `design/` from a code repo. A hook blocks it.
 - Only you set `status: approved` on a plan and decide findings.
-- Cross-system decisions reach the design before the build continues; local decisions reach it before the PR.
+- Cross-system decisions reach the system design before the build continues; local decisions reach it before the PR.
 - The design PR merges before the code PR.
 - Cite IDs, don't copy content.

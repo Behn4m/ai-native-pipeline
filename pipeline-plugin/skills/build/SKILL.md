@@ -11,9 +11,9 @@ Run in a **code repo**.
    - `open`: do not work on the affected task. Work on other tasks, or stop if none are left.
    - `decided`, scope `local`: implement the decision in the affected task.
    - `decided` or `synced`, scope `cross-system`: do not work on the affected task until it is `applied`.
-   - `applied`: the design already states the decision; follow the design.
+   - `applied`: the system design already states the decision; follow the system design.
 4. Create or switch to a work branch named after the Linear issue.
 5. Implement tasks in plan order. After every change, run the build, unit tests and lint from CLAUDE.md. Fix failures before moving on.
-6. Implement only what the plan, the design and decided findings say. If the plan is wrong in a small, local way, note it for the human. If the design is wrong or missing something, run `/pipeline:finding` and pause that task.
+6. Implement only what the plan, the system design and decided findings say. If the plan is wrong in a small, local way, note it for the human. If the system design is wrong or missing something, run `/pipeline:finding` and pause that task.
 7. Do not commit or push code; that is step 14.
 8. Report: tasks done, tasks paused on findings, build and unit test status, and anything that deviated from the plan. Then tell the human to run `/pipeline:verify-sim`.

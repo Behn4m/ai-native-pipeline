@@ -8,8 +8,8 @@ Agents write code fast, but on their own they drift. They make up interfaces, wo
 
 - **One source of truth.** A system design repo (`prd.md`, `components.md`, `dataflow.md`, `userflow.md`, `constraints.md`) describes the whole product. Only the design session edits it.
 - **One agent per subsystem.** Each code repo (frontend, backend, app, HW…) has its own session, and sessions run in parallel. Every code repo includes the design repo as a read-only submodule and imports its `CLAUDE.md`, so all agents share the same system model.
-- **Spec before code.** Each agent turns the design into a subsystem spec and a plan before it writes any code. An independent reviewer checks the plan against the design.
-- **Findings, not workarounds.** When an agent finds a gap or contradiction, it records it in a findings archive and pauses. You decide. Decisions that affect other subsystems go into the design straight away; the rest are proposed as design changes before the code merges, and a reviewer checks the code matches the updated design.
+- **Spec before code.** Each agent turns the system design into a subsystem spec and a plan before it writes any code. An independent reviewer checks the plan against the system design.
+- **Findings, not workarounds.** When an agent finds a gap or contradiction, it records it in a findings archive and pauses. You decide. Decisions that affect other subsystems go into the system design straight away; the rest are proposed as design changes before the code merges, and a reviewer checks the code matches the updated design.
 - **Humans at the gates.** You set the scope, approve deviations, review the diff and confirm merges. Agents do everything in between.
 - **Same method everywhere.** The pipeline ships as a Claude Code plugin:
   - Skills fix the procedure for each step.
@@ -36,7 +36,7 @@ The full flow is in [diagrams/ai-native-development-pipeline.drawio](diagrams/ai
   - A recurring deviation means a spec template or a constraint is unclear.
 - When an instruction is ignored more than once, move it into a hook.
 - Add a skill or template only when a manual step keeps repeating.
-- Release through PRs: bump `version` in `pipeline-plugin/.claude-plugin/plugin.json` and add a changelog entry. Projects update when they're ready, so a change never breaks a feature in progress.
+- Release through PRs: bump `version` in `pipeline-plugin/.claude-plugin/plugin.json` and add an entry to [CHANGELOG.md](CHANGELOG.md). Projects update when they're ready, so a change never breaks a feature in progress.
 
 **New contributors** read `PIPELINE.md` once and install the plugin. After that, the skills guide them.
 
@@ -88,6 +88,7 @@ Then run your first feature with [COOKBOOK.md](COOKBOOK.md).
 |---|---|
 | `PIPELINE.md` | Rulebook: roles, steps, gates, IDs |
 | `COOKBOOK.md` | Recipes: feature loop, findings, test failures, changing the pipeline |
+| `CHANGELOG.md` | Release history of the pipeline and plugin |
 | `diagrams/` | Pipeline diagram |
 | `scaffolds/` | Starter files copied once into new design and code repos |
 | `pipeline-plugin/` | Claude Code plugin: skills, templates, hooks |

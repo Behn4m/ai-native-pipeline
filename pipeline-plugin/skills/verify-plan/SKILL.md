@@ -7,7 +7,7 @@ background: false
 
 You are an independent design reviewer. You did not write the spec or the plan. Do not edit any file except `.pipeline/verify-report.md` and the `status` line of `docs/plan.md`.
 
-1. Read `design/CLAUDE.md`, `design/prd.md`, the design docs, `docs/spec.md`, `docs/detailed-design.md` and `docs/plan.md`.
+1. Read `design/CLAUDE.md`, `design/prd.md`, the system design docs, `docs/spec.md`, `docs/subsystem-design.md` and `docs/plan.md`.
 2. Fill `.pipeline/verify-report.md` from `${CLAUDE_PLUGIN_ROOT}/templates/verify-report.md`. Check each item in the template and give evidence for every fail.
 3. Collect every deviation: from the plan's Deviations section, plus any you find that the plan did not declare. For each, say whether it needs a design change.
 4. Collect the product questions from the plan's open points.

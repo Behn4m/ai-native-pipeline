@@ -24,6 +24,6 @@ if [ -d "$dir" ]; then
   open=$(grep -l '^status:[[:space:]]*open' "$dir"/F-*.md 2>/dev/null | xargs -r -n1 basename -s .md | tr '\n' ' ')
   waiting=$(grep -l '^scope:[[:space:]]*cross-system' "$dir"/F-*.md 2>/dev/null | xargs -r grep -l -E '^status:[[:space:]]*(decided|synced)' 2>/dev/null | xargs -r -n1 basename -s .md | tr '\n' ' ')
   [ -n "$open" ] && echo "Pipeline: open findings waiting for a decision: $open"
-  [ -n "$waiting" ] && echo "Pipeline: cross-system decisions not yet applied to the design: $waiting"
+  [ -n "$waiting" ] && echo "Pipeline: cross-system decisions not yet applied to the system design: $waiting"
 fi
 exit 0
