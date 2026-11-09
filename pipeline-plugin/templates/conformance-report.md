@@ -16,7 +16,8 @@ code_commit: <commit>
 | Every decided finding is implemented in the code | pass / fail | |
 | Every DF this subsystem produces or consumes matches `dataflow.md` | pass / fail | |
 | Every applicable CON is met | pass / fail | |
-| Every AC in the spec has a passing test result | pass / fail | |
+| Every project AC in the spec has a passing sim / real result | pass / fail | |
+| Regression suite is green | pass / fail | |
 | No behaviour in the code lacks a design or finding basis | pass / fail | |
 
 ## Mismatches

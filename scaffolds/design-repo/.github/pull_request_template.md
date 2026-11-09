@@ -3,7 +3,14 @@
 This description is the permanent record of the decision. System design docs hold no history.
 
 **Linear project:** <link>
-**Trigger:** <new scope / finding F-xxx / green-light deviation>
+**PRD change:** <what this project adds or changes in `prd.md`, citing AC IDs>
+**Also triggered by:** <none / finding F-xxx / green-light deviation>
+
+### Milestones
+
+| Milestone | Delivers | Target |
+|---|---|---|
+| M1 | <what> | <date> |
 
 ### Context
 

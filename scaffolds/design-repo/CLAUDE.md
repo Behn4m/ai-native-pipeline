@@ -16,13 +16,14 @@ You are the only editor of this repo.
 - Every element gets a stable ID (see below). Never reuse or renumber an ID; retire it instead.
 - Interfaces between components are defined only in `dataflow.md`.
 - Filenames are unique across the repo. When a topic outgrows its file, propose a split.
-- Each design change happens on a branch `design/<project>` and lands through a PR using the PR template.
+- A project is a new update to `prd.md`, handed to the development teams. Every design change belongs to a project: it happens on a branch `design/<project>` and lands through one PR using the PR template.
+- New IDs take the next number that is free on `main` and on every open `design/*` branch, so parallel projects never collide.
 
 ## Files
 
 | File | Holds | IDs |
 |---|---|---|
-| [prd.md](prd.md) | Problem, users, scope, milestones, acceptance criteria | `AC-` |
+| [prd.md](prd.md) | Product problem, users, goals, scope, acceptance criteria | `AC-` |
 | [components.md](components.md) | What exists and which subsystem owns it | `CMP-` |
 | [dataflow.md](dataflow.md) | What moves between components; interface contracts | `DF-` |
 | [userflow.md](userflow.md) | User journeys | `UF-` |

@@ -1,10 +1,10 @@
 # Linear project template
 
-Create one Linear project per design branch (`design/<project>`).
+Create one Linear project per project: a new update to `prd.md`, handed to the development teams.
 
 - **Name:** <project>
-- **Summary:** <one line from prd.md Problem>
-- **PRD:** <link to prd.md on the design branch>
+- **Summary:** <one line: what this project changes in the product>
+- **PRD change:** <link to the `prd.md` diff in the design PR>
 - **Design PR:** <link>
 - **Affected subsystems:** <subsystems from the design PR>
-- **Milestones:** copy from prd.md (M1, M2, ...)
+- **Milestones:** M1, M2, ... with target dates. Milestones are set here and listed in the design PR; `prd.md` has none.

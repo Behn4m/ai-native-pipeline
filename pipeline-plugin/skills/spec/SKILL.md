@@ -30,7 +30,8 @@ The submodule was fetched and checked out at `$branch` before this skill loaded.
    - Owned components: the CMP IDs whose subsystem is $subsystem.
    - Responsibilities: trace to UF steps.
    - Interfaces: cite DF IDs only. Never define or extend one.
-   - Constraints and acceptance criteria: only the CON and AC IDs that apply to this subsystem.
+   - Constraints: only the CON IDs that apply to this subsystem.
+   - Acceptance criteria: of the non-retired AC IDs that name this subsystem, those added or changed in the diff above are **project ACs**; the rest are **regression ACs**. A regression AC with no automated test is an open point for the plan.
    - Design diff impact: what the changes above mean for this subsystem. "None" if nothing.
 5. If the system design is missing something this subsystem needs, contradicts itself, or rests on a wrong assumption, run `/pipeline:finding` and stop.
 6. Run `${CLAUDE_PLUGIN_ROOT}/scripts/attach-findings.sh`. If it reports `unreachable`, say in the report that findings could not be checked. If an archive exists, then for every `synced` finding of this project whose Design change now appears in the system design (as committed, or as the human edited it), set `status: applied`. Commit and push the archive.

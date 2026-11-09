@@ -9,9 +9,13 @@
 
 ## Acceptance criteria
 
+Project ACs:
+
 | AC | Sim | Real | Evidence |
 |---|---|---|---|
 | AC-xxx | pass / fail / n.a. | pass / fail / n.a. | [.pipeline/test-report.md](.pipeline/test-report.md) |
+
+Regression suite: <pass / fail>
 
 ## Deviations approved at green light
 

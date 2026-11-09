@@ -1,6 +1,6 @@
-# PRD: <project>
+# PRD: <product>
 
-Linear project: <link>
+What the product does now. A project is a new update to this file, handed to the development teams. It is made on a `design/<project>` branch and merged through one design PR. Project milestones live in the Linear project and the design PR, not here.
 
 ## Problem
 
@@ -24,15 +24,9 @@ In scope:
 Out of scope:
 - <item>
 
-## Milestones
-
-| Milestone | Delivers | Target |
-|---|---|---|
-| M1 | <what> | <date> |
-
 ## Acceptance criteria
 
-These are the test plan. Every code repo's spec selects the subset it must pass.
+These are the test plan. Every code repo's spec selects the ones for its subsystem: the ACs a project adds or changes must pass in sim and real; the rest are regression, covered by the automated tests. Never reuse or renumber an ID; mark a removed AC `retired` and keep its row.
 
 | ID | Criterion | Verified by | Subsystems |
 |---|---|---|---|

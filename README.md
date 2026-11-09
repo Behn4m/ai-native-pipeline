@@ -24,14 +24,14 @@ The full flow is in [diagrams/ai-native-development-pipeline.drawio](diagrams/ai
 |---|---|---|
 | Once per machine | Install the plugin | Claude Code |
 | Once per product | Create the design repo and code repos | [Initialize repos](#initialize-repos) |
-| Every feature | Run the loop: write the PRD, run skills, decide at gates | Design and code repos ([COOKBOOK.md](COOKBOOK.md)) |
-| Every few features | Improve the pipeline | This repo |
+| Every project | Run the loop: change `prd.md`, run skills, decide at gates | Design and code repos ([COOKBOOK.md](COOKBOOK.md)) |
+| Every few projects | Improve the pipeline | This repo |
 
 **Day to day**, you work in the design and code repos, not here. The skills carry the procedure, and your job is the gates: green light, findings, diff review, merge.
 
 **Improve the pipeline** by treating this repo as a product:
 
-- Review findings, revise loops and test failures every few features.
+- Review findings, revise loops and test failures every few projects.
   - A recurring kind of finding means a design template is missing a field.
   - A recurring deviation means a spec template or a constraint is unclear.
 - When an instruction is ignored more than once, move it into a hook.
@@ -58,7 +58,7 @@ Type `/pipeline:` to check that the skills are listed.
 1. Create a repo, e.g. `<product>-design`.
 2. Copy everything from `scaffolds/design-repo/` into it.
 3. Fill the `<placeholders>` in `CLAUDE.md`.
-4. Commit to `main`. Each feature then starts on a `design/<project>` branch with `prd.md` filled in.
+4. Fill `prd.md` with the product as it stands (or leave it empty for a new product) and commit to `main`. From then on, each project is a new update to `prd.md`, handed to the development teams.
 
 ### 3. Create a code repo (once per subsystem)
 
@@ -80,14 +80,14 @@ Type `/pipeline:` to check that the skills are listed.
 
 Create the project and issues from [linear/](linear/).
 
-Then run your first feature with [COOKBOOK.md](COOKBOOK.md).
+Then run your first project with [COOKBOOK.md](COOKBOOK.md).
 
 ## Contents
 
 | Path | Purpose |
 |---|---|
 | `PIPELINE.md` | Rulebook: roles, steps, gates, IDs |
-| `COOKBOOK.md` | Recipes: feature loop, findings, test failures, changing the pipeline |
+| `COOKBOOK.md` | Recipes: project loop, findings, test failures, changing the pipeline |
 | `CHANGELOG.md` | Release history of the pipeline and plugin |
 | `diagrams/` | Pipeline diagram |
 | `scaffolds/` | Starter files copied once into new design and code repos |

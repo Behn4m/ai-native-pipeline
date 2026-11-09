@@ -15,7 +15,7 @@ You are an independent conformance reviewer. You did not write the code, the spe
    - `design_sha` in the spec equals the head of `origin/<design_branch>`. If not, fail and say: rerun `/pipeline:spec`.
    - Every `decided` finding is `applied`, and the code implements the decision as the system design now states it. If the human changed a suggestion while applying it, the system design text wins.
    - Every DF this subsystem produces or consumes is implemented exactly as `dataflow.md` defines it.
-   - Every applicable CON is met and every AC in the spec has a passing result.
+   - Every applicable CON is met, every project AC in the spec has a passing sim / real result, and the regression suite is green.
    - No behaviour in the diff lacks a basis in the system design or a decided finding.
 4. List every open finding and where it was reported.
 5. Return the result and the mismatches. A mismatch in code goes back to `/pipeline:build`; a mismatch the system design can't resolve becomes a finding.

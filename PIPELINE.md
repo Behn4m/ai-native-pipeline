@@ -2,6 +2,14 @@
 
 The system design repo is the single source of truth. Code repos implement against it and never change it. Every gap found during implementation goes to a human; agents never code around it. Every decision reaches the system design before the code merges.
 
+## Terms
+
+| Term | Means | Lives in |
+|---|---|---|
+| Product | What the product does now | `prd.md` and the system design on design main |
+| Project | A new update to `prd.md`, handed to the development teams. Every design change belongs to a project. | `design/<project>` branch, one design PR, one Linear project, `work/<project>` in each code repo |
+| Milestone | A delivery stage within a project | Linear milestone (one Linear issue per code repo); listed in the design PR |
+
 ## Roles
 
 | Role | Where | Does |
@@ -15,15 +23,15 @@ The system design repo is the single source of truth. Code repos implement again
 
 | # | Step | Owner | Input | Output | Gate |
 |---|---|---|---|---|---|
-| 1 | Project scope | Human | Need | `prd.md`, Linear project and milestones | |
-| 2 | System design | Design session | `prd.md` | Design branch, updated system design docs, design PR stating the decision | |
+| 1 | Project scope | Human | Need | `prd.md` change on `design/<project>`, Linear project with milestones | |
+| 2 | System design | Design session | `prd.md` change | Design branch, updated system design docs, design PR stating the decision | |
 | 3 | Subsystem spec | Implementation session | Design branch | `work/<project>` branch, `docs/spec.md` | |
 | 4 | Implementation plan | Implementation session | `docs/spec.md` | `docs/subsystem-design.md`, `docs/plan.md` | |
 | 5 | Verify plan | Reviewer | Spec, plan, design, `prd.md` | `.pipeline/verify-report.md` with deviations | Must pass |
 | 6 | Green light | Human | Verify report | Plan `status: approved`, or revise | Human |
 | 7 | Build | Implementation session | Approved plan, decided findings | Code committed task by task on `work/<project>` | Plan approved, no blocking findings |
-| 8 | Verify on simulation | Implementation session | Code, acceptance criteria | `.pipeline/test-report.md` | |
-| 9 | Verify on real scenario | Human and implementation session | Code, acceptance criteria | `.pipeline/test-report.md` | |
+| 8 | Verify on simulation | Implementation session | Code, project ACs, regression tests | `.pipeline/test-report.md` | |
+| 9 | Verify on real scenario | Human and implementation session | Code, project ACs | `.pipeline/test-report.md` | |
 | 10 | Review diff | Human | Diff and reports | Go, or back to step 7 | Human |
 | 11 | Findings sync | Implementation session | Findings archive | Design PR suggestions (decided), issues or known issues (open) | |
 | 12 | Apply design suggestions | Human | Design PR suggestions | Design branch updated; `/pipeline:spec` rerun | Human |
@@ -92,8 +100,15 @@ Every finding is classified when it is raised:
 2. You decide and write the decision in the finding.
 3. **Local finding:** the build continues and implements the decision. The decision reaches the system design at step 11.
 4. **Cross-system finding:** run `/pipeline:findings-sync` now, apply the suggestion on the design PR, rerun `/pipeline:spec`, then continue the build. Other subsystems are warned at session start that the system design moved and rerun their spec.
-5. **At step 11**, every decided finding becomes a suggestion on the design PR. Every open finding becomes either a GitHub issue in the design repo or a known issue in the code PR description; you choose per finding.
+5. **At step 11**, every decided finding becomes a suggestion on the design PR. Every open finding becomes either a GitHub issue in the design repo or a known issue in the code PR description; you choose per finding. A design repo issue is resolved by a later project, that is, a `prd.md` change.
 6. **At step 13**, the reviewer checks that the code matches the updated design and that every decision is in it.
+
+## Acceptance criteria per project
+
+`prd.md` holds every AC of the product, so each subsystem spec splits the ACs that apply to it:
+
+- **Project ACs:** added or changed on this project's design branch. They must pass in sim and real (as each AC's "Verified by" says).
+- **Regression ACs:** all other non-retired ACs of the subsystem. The repo's automated tests cover them and must stay green; they are not re-verified by hand.
 
 ## Test failures
 
@@ -121,6 +136,8 @@ Every design element has a stable ID. Specs, plans, tests and PRs cite IDs inste
 ## Rules
 
 - System design docs hold no code and no history. Decisions live in design PR descriptions and comments.
+- Every project starts with a change to `prd.md`; a design branch without one is not a project.
+- New IDs take the next number free on design main and on every open `design/*` branch. IDs are never renumbered or reused; removed ones are marked retired.
 - Interfaces are defined only in `dataflow.md`. A spec that needs a new or changed interface raises a cross-system finding.
 - The `design/` submodule is read-only in code repos. A hook enforces this.
 - Code repos work only on `work/<project>`. Commit and push there freely; never push to main. Main changes only by the squash merge at step 17.

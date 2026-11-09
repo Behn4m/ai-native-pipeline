@@ -4,6 +4,7 @@ Release history of the pipeline. Versions match `version` in [pipeline-plugin/.c
 
 ## Unreleased
 
+- `prd.md` describes the product; each project is a new update to it, handed to the development teams. Terms (product, project, milestone) defined in [PIPELINE.md](PIPELINE.md#terms). Milestones move to the Linear project and the design PR. Specs split project ACs (must pass in sim and real) from regression ACs (automated tests stay green). New IDs are allocated across main and all open design branches.
 - Terminology: "System design" for the design repo, "Subsystem design" and "Subsystem spec" for code repos. `docs/detailed-design.md` is now `docs/subsystem-design.md`.
 - Diagram updated to the 17 steps.
 - Findings archive is attached automatically (new `attach-findings.sh`, run at session start and by every skill that reads findings), so fresh and shallow clones see open findings; skills stop if the archive can't be reached.

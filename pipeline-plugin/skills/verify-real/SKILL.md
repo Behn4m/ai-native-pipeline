@@ -6,7 +6,7 @@ disable-model-invocation: true
 Run in a **code repo**. The human runs the hardware or real environment; you prepare, record and classify.
 
 1. The working tree must be clean (everything committed) so the report names a real commit. If not, stop and tell the human to finish `/pipeline:build`.
-2. Take the ACs marked real or both from `docs/spec.md`.
+2. Take the project ACs marked real or both from `docs/spec.md`. Regression ACs are not re-verified by hand.
 3. Give the human a numbered checklist: for each AC, setup, action and the exact observation that means pass.
 4. Wait for the human's results. Ask for logs or measurements where the AC needs them.
 5. Fill `.pipeline/test-report.md` from `${CLAUDE_PLUGIN_ROOT}/templates/test-report.md` with `level: real` and `commit:` = `git rev-parse HEAD`.

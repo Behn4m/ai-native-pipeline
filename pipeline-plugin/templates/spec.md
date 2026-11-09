@@ -32,9 +32,21 @@ What this subsystem must do, derived from the system design. Cite IDs; do not re
 
 ## Acceptance criteria
 
+### Project ACs
+
+Added or changed on this project's design branch. Must pass in sim and real, as "Verified by" says.
+
 | AC ID | Verified by |
 |---|---|
 | AC-xxx | sim / real / both |
+
+### Regression ACs
+
+This subsystem's other non-retired ACs. Covered by the automated tests, which must stay green.
+
+| AC ID | Automated test |
+|---|---|
+| AC-xxx | <test path> |
 
 ## Design diff impact
 

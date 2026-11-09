@@ -2,11 +2,13 @@
 
 Recipes for running work through the pipeline. Setup is in the [README](README.md#initialize-repos); rules are in [PIPELINE.md](PIPELINE.md).
 
-## Run a feature through the pipeline
+## Run a project through the pipeline
+
+A project is a new update to `prd.md`, handed to the development teams ([terms](PIPELINE.md#terms)).
 
 | # | Who | Where | Do |
 |---|---|---|---|
-| 1 | You | Linear + design repo | Create the project from `linear/project-template.md`. Fill `prd.md` on branch `design/<project>`, including `AC-` IDs. |
+| 1 | You | Linear + design repo | Create the Linear project and its milestones from `linear/project-template.md`. On branch `design/<project>`, change `prd.md`: add or change `AC-` IDs (next free ID; retire, never renumber). |
 | 2 | Design session | Design repo | `/pipeline:design <project>` → design PR opened |
 | 3 | Code session | Each affected code repo | `/pipeline:spec <subsystem> design/<project>` → `docs/spec.md` on branch `work/<project>` |
 | 4 | Code session | Code repo | `/pipeline:plan <linear-issue>` → `docs/plan.md`, `docs/subsystem-design.md` |

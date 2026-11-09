@@ -20,9 +20,10 @@ design_sha: <design submodule commit>
 
 ## Test mapping
 
-| AC ID | Test type | Location |
-|---|---|---|
-| AC-xxx | unit / sim / real | <path or procedure> |
+| AC ID | Project / regression | Test type | Location |
+|---|---|---|---|
+| AC-xxx | project | unit / sim / real | <path or procedure> |
+| AC-xxx | regression | automated | <path> |
 
 ## Dependencies
 

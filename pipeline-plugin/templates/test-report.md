@@ -7,6 +7,8 @@ attempt: <n> of 3
 
 # Test report
 
+Regression suite (sim level only): pass / fail, <command and summary>
+
 ## Results
 
 | AC ID | Result | Evidence |
