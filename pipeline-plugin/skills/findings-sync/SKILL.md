@@ -11,7 +11,7 @@ Scope: $ARGUMENTS (empty or `all` = every finding of this project; `F-xxx` = tha
 
 ## 1. Collect
 
-1. `git -C .pipeline/findings pull --rebase`.
+1. Run `${CLAUDE_PLUGIN_ROOT}/scripts/attach-findings.sh`. If it reports `unreachable`, stop and tell the human.
 2. Project = `design_branch` in `docs/spec.md` without the `design/` prefix. Read every finding in `.pipeline/findings/<project>/` in scope. Skip `synced`, `applied` and `closed`.
 3. Find the design repo and PR: `git -C design remote get-url origin`, then `gh pr list -R <design-repo> --head <design_branch> --json number,url`. No PR: stop and tell the human to run `/pipeline:design <project>` first.
 

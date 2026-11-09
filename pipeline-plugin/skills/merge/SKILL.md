@@ -10,5 +10,5 @@ Run in a **code repo**, only after the human confirmed the merge (step 15).
 3. Check that design main contains everything at the `design_sha` in `docs/spec.md`. If design main changed anything this repo depends on, stop and report it.
 4. Commit the submodule update on the work branch and push.
 5. Ask the human for explicit confirmation, then squash-merge the code PR.
-6. In the findings archive, set every `applied` finding of this project to `closed`, then commit and push (`git -C .pipeline/findings`). Leave `synced` open findings as they are; their issue or known issue tracks them.
+6. Run `${CLAUDE_PLUGIN_ROOT}/scripts/attach-findings.sh`. If it reports `unreachable`, stop before closing findings. In the findings archive, set every `applied` finding of this project to `closed`, then commit and push (`git -C .pipeline/findings`). Leave `synced` open findings as they are; their issue or known issue tracks them.
 7. Report the merge and remind the human to close the Linear issue.

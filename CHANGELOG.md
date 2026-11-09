@@ -6,6 +6,7 @@ Release history of the pipeline. Versions match `version` in [pipeline-plugin/.c
 
 - Terminology: "System design" for the design repo, "Subsystem design" and "Subsystem spec" for code repos. `docs/detailed-design.md` is now `docs/subsystem-design.md`.
 - Diagram updated to the 17 steps.
+- Findings archive is attached automatically (new `attach-findings.sh`, run at session start and by every skill that reads findings), so fresh and shallow clones see open findings; skills stop if the archive can't be reached.
 - Added this changelog.
 
 ## 0.2.1 — 2026-10-25

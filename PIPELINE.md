@@ -48,7 +48,7 @@ pipeline/findings
     └── F-002.md
 ```
 
-`/pipeline:finding` creates the worktree and the branch if they don't exist, and commits and pushes every change to the archive branch. Nobody switches branches.
+A clone checks out only one branch and a worktree is local to each machine, so a fresh clone has no `.pipeline/findings/`. The session-start hook and every skill that reads findings run `attach-findings.sh`, which attaches the archive or updates it. `/pipeline:finding` creates the branch the first time, and commits and pushes every change to it. If origin can't be reached, `build`, `verify-design`, `findings-sync`, `pr` and `merge` stop. Nobody switches branches.
 
 ### Scope
 

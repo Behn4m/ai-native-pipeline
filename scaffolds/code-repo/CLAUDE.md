@@ -18,7 +18,7 @@
   - `docs/spec.md`: subsystem spec (step 3)
   - `docs/subsystem-design.md`, `docs/plan.md`: implementation plan (step 4)
   - `.pipeline/`: verify report, test reports, conformance report
-  - `.pipeline/findings/`: findings archive, a worktree of the `pipeline/findings` branch. Ignored by code branches; commit there with `git -C .pipeline/findings`.
+  - `.pipeline/findings/`: findings archive, a worktree of the `pipeline/findings` branch. Ignored by code branches; commit there with `git -C .pipeline/findings`. Attached automatically at session start.
 - Use the pipeline skills for each step (`/pipeline:spec`, `/pipeline:plan`, ...). See the kit COOKBOOK for the order.
 
 ## Build and test

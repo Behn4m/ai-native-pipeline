@@ -7,7 +7,7 @@ Run in a **code repo**.
 
 1. Confirm the human said go in this conversation and `.pipeline/conformance-report.md` has `result: pass` for the current code. If not, stop.
 2. Commit the work, including `docs/` and `.pipeline/` (the findings archive is ignored and stays on its own branch). Push the work branch.
-3. Open a PR with the repo's PR template. Fill every field:
+3. Run `${CLAUDE_PLUGIN_ROOT}/scripts/attach-findings.sh`. If it reports `unreachable`, stop. Then open a PR with the repo's PR template. Fill every field:
    - Linear issue, design branch and SHA, AC results from the test reports, approved deviations.
    - **Findings**: every finding of this project with its decision and link (`synced_to`).
    - **Known issues**: every finding whose `synced_to` is `known issue in code PR`, with its summary and impact.

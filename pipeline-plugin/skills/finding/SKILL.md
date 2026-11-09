@@ -7,10 +7,10 @@ Never work around a design problem. Record it and pause.
 
 ## 1. Make sure the archive is attached
 
-The archive is the branch `pipeline/findings`, checked out as a worktree at `.pipeline/findings/`. If `.pipeline/findings/.git` does not exist:
+The archive is the branch `pipeline/findings`, checked out as a worktree at `.pipeline/findings/`. Run `${CLAUDE_PLUGIN_ROOT}/scripts/attach-findings.sh`; it attaches the archive or updates it.
 
-- Remote branch exists (`git fetch origin pipeline/findings` succeeds): `git worktree add .pipeline/findings pipeline/findings`
-- Otherwise create it: `git worktree add --orphan -b pipeline/findings .pipeline/findings`, then commit an empty README there and `git -C .pipeline/findings push -u origin pipeline/findings`.
+- `none`: no archive exists yet. Create it: `git worktree add --orphan -b pipeline/findings .pipeline/findings`, then commit an empty README there and `git -C .pipeline/findings push -u origin pipeline/findings`.
+- `unreachable`: stop and tell the human the archive could not be reached.
 
 Confirm `git check-ignore .pipeline/findings` succeeds. If not, stop and tell the human to add `.pipeline/findings/` to `.gitignore`.
 

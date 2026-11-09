@@ -7,7 +7,7 @@ Run in a **code repo**.
 
 1. Read `docs/plan.md`. If its `status` is not `approved`, stop and say green light is missing.
 2. Confirm `design_sha` in the spec matches `git -C design rev-parse HEAD`. If not, stop and ask the human to rerun `/pipeline:spec`.
-3. Read the findings in `.pipeline/findings/<project>/` (project = `design_branch` in the spec without `design/`):
+3. Run `${CLAUDE_PLUGIN_ROOT}/scripts/attach-findings.sh`. If it reports `unreachable`, stop: open findings cannot be ruled out. Then read the findings in `.pipeline/findings/<project>/` (project = `design_branch` in the spec without `design/`):
    - `open`: do not work on the affected task. Work on other tasks, or stop if none are left.
    - `decided`, scope `local`: implement the decision in the affected task.
    - `decided` or `synced`, scope `cross-system`: do not work on the affected task until it is `applied`.

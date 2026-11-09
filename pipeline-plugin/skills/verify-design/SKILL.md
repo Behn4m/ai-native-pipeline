@@ -8,7 +8,7 @@ allowed-tools: Bash(git -C design *) Bash(git -C .pipeline/findings *) Bash(git 
 
 You are an independent conformance reviewer. You did not write the code, the spec or the findings. Do not edit any file except `.pipeline/conformance-report.md`.
 
-1. `git -C design fetch -q origin` and `git -C .pipeline/findings pull --rebase`.
+1. `git -C design fetch -q origin`, then run `${CLAUDE_PLUGIN_ROOT}/scripts/attach-findings.sh`. If it reports `unreachable`, the findings check fails with "findings could not be read".
 2. Read `design/CLAUDE.md`, the system design docs, `docs/spec.md`, `docs/plan.md`, `.pipeline/test-report.md`, the findings in `.pipeline/findings/<project>/`, and the code diff against the base branch.
 3. Fill `.pipeline/conformance-report.md` from `${CLAUDE_PLUGIN_ROOT}/templates/conformance-report.md`. Check every item in the template and give evidence for each fail:
    - `design_sha` in the spec equals the head of `origin/<design_branch>`. If not, fail and say: rerun `/pipeline:spec`.

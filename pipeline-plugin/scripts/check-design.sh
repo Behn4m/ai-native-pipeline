@@ -2,6 +2,11 @@
 # SessionStart: warn when the design branch moved since docs/spec.md was written,
 # and list findings that need attention. Never blocks; output is added to the session.
 root="${CLAUDE_PROJECT_DIR:-$PWD}"
+
+# Attach or update the findings archive first, so a fresh clone sees its findings.
+# Stay quiet when it is simply up to date or does not exist yet.
+"$(dirname "$0")/attach-findings.sh" | grep -v -e 'archive updated' -e 'Findings: none'
+
 spec="$root/docs/spec.md"
 [ -f "$spec" ] || exit 0
 [ -d "$root/design" ] || exit 0

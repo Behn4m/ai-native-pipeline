@@ -32,5 +32,5 @@ The submodule was fetched and checked out at `$branch` before this skill loaded.
    - Constraints and acceptance criteria: only the CON and AC IDs that apply to this subsystem.
    - Design diff impact: what the changes above mean for this subsystem. "None" if nothing.
 4. If the system design is missing something this subsystem needs, contradicts itself, or rests on a wrong assumption, run `/pipeline:finding` and stop.
-5. If `.pipeline/findings/` exists: `git -C .pipeline/findings pull --rebase`, then for every `synced` finding of this project whose Design change now appears in the system design (as committed, or as the human edited it), set `status: applied`. Commit and push the archive.
+5. Run `${CLAUDE_PLUGIN_ROOT}/scripts/attach-findings.sh`. If it reports `unreachable`, say in the report that findings could not be checked. If an archive exists, then for every `synced` finding of this project whose Design change now appears in the system design (as committed, or as the human edited it), set `status: applied`. Commit and push the archive.
 6. Report the spec summary, findings now applied, and any open points. Do not start the plan.
